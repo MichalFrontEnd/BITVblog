@@ -158,6 +158,21 @@
           />
           Diverse
         </label>
+        <label for="ratherNotSay">
+          <input
+            type="radio"
+            id="ratherNotSay"
+            name="gender"
+            value="ratherNotSay"
+            required
+            aria-labelledby="ratherNotSayLabel genderLegend"
+          />
+          Rather not say
+        </label>
+
+        <label id="genderLabel" class="sr-only"
+          >Please select your gender:</label
+        >
       </div>
 
       <label for="email">Email:</label>
@@ -170,36 +185,6 @@
       />
 
       <label id="emailLabel" class="sr-only">Please enter your email:</label>
-
-      <label for="country">State:</label>
-      <select
-        id="country"
-        name="country"
-        required
-        aria-labelledby="countryLabel"
-      >
-        <option value="bw">Baden-Württemberg</option>
-        <option value="by">Bavaria</option>
-        <option value="be">Berlin</option>
-        <option value="bb">Brandenburg</option>
-        <option value="hb">Bremen</option>
-        <option value="hh">Hamburg</option>
-        <option value="he">Hesse</option>
-        <!-- Add other German states as needed -->
-      </select>
-
-      <label id="countryLabel" class="sr-only">Please select your state:</label>
-
-      <label for="message">Message:</label>
-      <textarea
-        id="message"
-        name="message"
-        rows="4"
-        required
-        aria-labelledby="messageLabel"
-      ></textarea>
-
-      <label id="messageLabel" class="sr-only">Please leave a message:</label>
 
       <fieldset>
         <legend>Address:</legend>
@@ -238,8 +223,42 @@
         />
 
         <label id="zipLabel" class="sr-only">Please enter your ZIP code:</label>
-      </fieldset>
 
+        <label for="country">State:</label>
+        <select
+          id="country"
+          name="country"
+          required
+          aria-labelledby="countryLabel"
+        >
+          <option value="bw">Baden-Württemberg</option>
+          <option value="by">Bavaria</option>
+          <option value="be">Berlin</option>
+          <option value="bb">Brandenburg</option>
+          <option value="hb">Bremen</option>
+          <option value="hh">Hamburg</option>
+          <option value="he">Hesse</option>
+          <!-- Add other German states as needed -->
+        </select>
+
+        <label id="countryLabel" class="sr-only"
+          >Please select your state:</label
+        >
+      </fieldset>
+      <div
+        role="presentation"
+        style="border-top: 5px solid #ccc; margin-bottom: 1.6rem"
+      ></div>
+      <label for="message">Message:</label>
+      <textarea
+        id="message"
+        name="message"
+        rows="4"
+        required
+        aria-labelledby="messageLabel"
+      ></textarea>
+
+      <label id="messageLabel" class="sr-only">Please leave a message:</label>
       <label for="subscribe">
         <input
           type="checkbox"
