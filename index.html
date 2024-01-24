@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accessible Form Example</title>
     <style>
+      :root {
+        --primary: #007bff;
+        --sky: #004997;
+        --midnight: #011e3b;
+      }
+
       body {
         font-family: Arial, sans-serif;
         margin: 2rem;
@@ -43,7 +49,7 @@
       input:focus,
       select:focus,
       textarea:focus {
-        outline: 0.2rem dashed #007bff;
+        outline: 0.2rem dashed var(--primary);
         outline-offset: 0.2rem;
       }
 
@@ -60,7 +66,7 @@
 
       button {
         padding: 1rem;
-        background-color: #007bff;
+        background-color: var(--primary);
         color: #fff;
         border: none;
         cursor: pointer;
@@ -71,12 +77,15 @@
       label[type="checkbox"] {
         align-self: center;
       }
-      button:hover {
-        background-color: #004997;
+
+      button:hover,
+      label[type="checkbox"]:hover {
+        background-color: var(--sky);
       }
 
-      button:active {
-        background-color: #011e3b;
+      button:active,
+      label[type="checkbox"]:active {
+        background-color: var(--midnight);
       }
 
       .sr-only {
@@ -91,6 +100,64 @@
       .radiogroup label {
         margin-left: 0.5rem;
         margin-right: 1rem;
+        display: inline-block;
+      }
+
+      /* Custom Checkbox Styling */
+      .custom-checkbox {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        margin-bottom: 1rem; /* Adjusted margin for better spacing */
+      }
+
+      .custom-checkbox input {
+        position: absolute;
+        opacity: 0;
+      }
+
+      .visual-checkbox {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        margin-right: 0.5rem; /* Adjusted margin for better spacing */
+      }
+
+      .visual-checkbox input {
+        position: absolute;
+        opacity: 0;
+      }
+
+      .visual-checkbox span {
+        width: 20px;
+        height: 20px;
+        background-color: #fff;
+        border: 1px solid var(--primary);
+        border-radius: 5px;
+        margin-right: 0.5rem; /* Adjusted margin for better spacing */
+        position: relative;
+      }
+
+      .visual-checkbox span::after {
+        content: "";
+        width: 12px;
+        height: 12px;
+        border: 2px solid var(--primary);
+        border-top: none;
+        border-right: none;
+        transform: rotate(-45deg);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+      }
+
+      .visual-checkbox input:checked + span::after {
+        opacity: 1;
+      }
+
+      .custom-checkbox label {
         display: inline-block;
       }
     </style>
@@ -175,17 +242,6 @@
         >
       </div>
 
-      <label for="email">Email:</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        required
-        aria-labelledby="emailLabel"
-      />
-
-      <label id="emailLabel" class="sr-only">Please enter your email:</label>
-
       <fieldset>
         <legend>Address:</legend>
 
@@ -232,24 +288,34 @@
           aria-labelledby="countryLabel"
         >
           <option value="bw">Baden-Württemberg</option>
-          <option value="by">Bavaria</option>
+          <option value="by">Bayern</option>
           <option value="be">Berlin</option>
           <option value="bb">Brandenburg</option>
           <option value="hb">Bremen</option>
           <option value="hh">Hamburg</option>
-          <option value="he">Hesse</option>
-          <!-- Add other German states as needed -->
+          <option value="he">Hessen</option>
+          <option value="mv">Mecklenburg-Vorpommern</option>
+          <option value="ni">Niedersachsen</option>
+          <option value="nw">Nordrhein-Westfalen</option>
+          <option value="rp">Rheinland-Pfalz</option>
+          <option value="sl">Saarland</option>
+          <option value="sn">Sachsen</option>
+          <option value="st">Sachsen-Anhalt</option>
+          <option value="sh">Schleswig-Holstein</option>
+          <option value="th">Thüringen</option>
         </select>
 
         <label id="countryLabel" class="sr-only"
           >Please select your state:</label
         >
       </fieldset>
+
+      <label for="message">Message:</label>
+      <!-- Add a separator with role="presentation" -->
       <div
         role="presentation"
-        style="border-top: 5px solid #ccc; margin-bottom: 1.6rem"
+        style="border-top: 1px solid #ccc; margin-bottom: 1.6rem"
       ></div>
-      <label for="message">Message:</label>
       <textarea
         id="message"
         name="message"
@@ -259,7 +325,34 @@
       ></textarea>
 
       <label id="messageLabel" class="sr-only">Please leave a message:</label>
+
+      <div class="custom-checkbox" tabindex="0" aria-labelledby="termsLabel">
+        <input
+          type="checkbox"
+          id="terms"
+          name="terms"
+          value="yes"
+          aria-labelledby="termsLabel"
+        />
+        Agree to Terms and Conditions
+        <label class="visual-checkbox" for="terms">
+          <input
+            type="checkbox"
+            id="terms"
+            name="terms"
+            value="yes"
+            aria-labelledby="termsLabel"
+          />
+          <span></span>
+        </label>
+      </div>
+
+      <label id="termsLabel" class="sr-only"
+        >Agree to Terms and Conditions</label
+      >
+
       <label for="subscribe">
+        <!-- Native HTML Checkbox -->
         <input
           type="checkbox"
           id="subscribe"
@@ -270,9 +363,7 @@
         Subscribe to newsletter
       </label>
 
-      <label id="subscribeLabel" class="sr-only"
-        >Would you like to subscribe to our newsletter?</label
-      >
+      <label id="subscribeLabel" class="sr-only">Subscribe to Newsletter</label>
 
       <button type="submit" aria-labelledby="submitButtonLabel">Submit</button>
 

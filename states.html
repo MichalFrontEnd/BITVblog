@@ -1,11 +1,6 @@
 <label for="country"
   >State:
-  <select
-    id="country"
-    name="country"
-    required
-    aria-labelledby="countryLabel visualLabel"
-  >
+  <select id="country" name="country" required aria-labelledby="countryLabel">
     <option value="bw">Baden-Württemberg</option>
     <option value="by">Bavaria</option>
     <option value="be">Berlin</option>
@@ -14,14 +9,37 @@
     <option value="hh">Hamburg</option>
     <option value="he">Hesse</option>
     <option value="mv">Mecklenburg-Vorpommern</option>
-    <option value="ni">Lower Saxony</option>
-    <option value="nw">North Rhine-Westphalia</option>
-    <option value="rp">Rhineland-Palatinate</option>
+    <option value="ni">Niedersachsen</option>
+    <option value="nw">Nordrhein-Westfalen</option>
+    <option value="rp">Rheinland-Pfalz</option>
     <option value="sl">Saarland</option>
-    <option value="sn">Saxony</option>
-    <option value="st">Saxony-Anhalt</option>
+    <option value="sn">Sachsen</option>
+    <option value="st">Sachsen-Anhalt</option>
     <option value="sh">Schleswig-Holstein</option>
-    <option value="th">Thuringia</option>
+    <option value="th">Thüringen</option>
   </select>
   <span id="countryLabel" class="sr-only">Please select your state:</span>
 </label>
+
+<label for="subscribe">
+  <!-- Custom Checkbox Control -->
+  <span
+    class="custom-checkbox"
+    tabindex="0"
+    aria-label="Agree to Terms and Conditions"
+  >
+    <input
+      type="checkbox"
+      id="subscribe"
+      name="subscribe"
+      value="yes"
+      aria-labelledby="subscribeLabel"
+    />
+    Agree to Terms and Conditions
+    <span class="visual-checkbox">
+      <span class="checkmark"></span>
+    </span>
+  </span>
+</label>
+
+<label id="subscribeLabel" class="sr-only">Agree to Terms and Conditions</label>
