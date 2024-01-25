@@ -105,60 +105,64 @@
 
       /* Custom Checkbox Styling */
       .custom-checkbox {
-        display: flex;
-        align-items: center;
+        display: grid;
+        grid-template-columns: min-content auto;
+      }
+
+      .custom-checkbox__input {
+        display: grid;
+        grid-template-areas: "checkbox";
+      }
+
+      .custom-checkbox__input input {
+        opacity: 0;
+        z-index: 1;
+        /* width: 1.5rem;
+        height: 1.5rem; */
+      }
+
+      .custom-checkbox__input > * {
+        grid-area: checkbox;
         cursor: pointer;
-        margin-bottom: 1rem; /* Adjusted margin for better spacing */
       }
 
-      .custom-checkbox input {
-        position: absolute;
-        opacity: 0;
+      .custom-checkbox__control {
+        display: inline-grid;
+
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 0.25em;
+        border: 2px solid #bbb;
+        background-color: white;
       }
 
-      .visual-checkbox {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        margin-right: 0.5rem; /* Adjusted margin for better spacing */
+      .custom-checkbox__control svg {
+        transition: transform 0.1s ease-in 25ms;
+        transform: scale(0);
+        transform-origin: center;
+        color: white;
+        place-self: center center;
+        width: 0.6rem;
+        height: 0.6rem;
       }
 
-      .visual-checkbox input {
-        position: absolute;
-        opacity: 0;
+      .custom-checkbox__input input:checked + .custom-checkbox__control svg {
+        transform: scale(1);
       }
 
-      .visual-checkbox span {
-        width: 20px;
-        height: 20px;
-        background-color: #fff;
-        border: 1px solid var(--primary);
-        border-radius: 5px;
-        margin-right: 0.5rem; /* Adjusted margin for better spacing */
-        position: relative;
+      .custom-checkbox__input input:checked + .custom-checkbox__control {
+        background-color: var(--primary);
+        border-color: var(--primary);
+      }
+      .custom-checkbox__input input:focus + .custom-checkbox__control {
+        box-shadow: 0 0 0 0.05em #fff, 0 0 0.15em 0.1em currentColor;
       }
 
-      .visual-checkbox span::after {
-        content: "";
-        width: 12px;
-        height: 12px;
-        border: 2px solid var(--primary);
-        border-top: none;
-        border-right: none;
-        transform: rotate(-45deg);
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 0;
-      }
-
-      .visual-checkbox input:checked + span::after {
-        opacity: 1;
-      }
-
-      .custom-checkbox label {
-        display: inline-block;
+      .custom-checkbox__input input:focus + .custom-checkbox__control {
+        outline: 3px dashed var(--primary);
+        outline-offset: 5px;
+        border: 2px solid transparent;
+        border-radius: 0;
       }
     </style>
   </head>
@@ -326,16 +330,13 @@
 
       <label id="messageLabel" class="sr-only">Please leave a message:</label>
 
-      <div class="custom-checkbox" tabindex="0" aria-labelledby="termsLabel">
-        <input
-          type="checkbox"
-          id="terms"
-          name="terms"
-          value="yes"
-          aria-labelledby="termsLabel"
-        />
-        Agree to Terms and Conditions
-        <label class="visual-checkbox" for="terms">
+      <label
+        class="custom-checkbox"
+        tabindex="0"
+        aria-labelledby="termsLabel"
+        for="terms"
+      >
+        <span class="custom-checkbox__input">
           <input
             type="checkbox"
             id="terms"
@@ -343,16 +344,37 @@
             value="yes"
             aria-labelledby="termsLabel"
           />
-          <span></span>
-        </label>
-      </div>
+          <span class="custom-checkbox__control">
+            <svg
+              enable-background="new 0 0 24 24"
+              height="24px"
+              id="Layer_1"
+              version="1.1"
+              viewBox="0 0 24 24"
+              width="24px"
+              xml:space="preserve"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              fill=" currentColor"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M21.652,3.211c-0.293-0.295-0.77-0.295-1.061,0L9.41,14.34  c-0.293,0.297-0.771,0.297-1.062,0L3.449,9.351C3.304,9.203,3.114,9.13,2.923,9.129C2.73,9.128,2.534,9.201,2.387,9.351  l-2.165,1.946C0.078,11.445,0,11.63,0,11.823c0,0.194,0.078,0.397,0.223,0.544l4.94,5.184c0.292,0.296,0.771,0.776,1.062,1.07  l2.124,2.141c0.292,0.293,0.769,0.293,1.062,0l14.366-14.34c0.293-0.294,0.293-0.777,0-1.071L21.652,3.211z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </span>
+        <span class="custom-checkbox__label"
+          >Agree to Terms and Conditions</span
+        >
+      </label>
 
       <label id="termsLabel" class="sr-only"
         >Agree to Terms and Conditions</label
       >
 
       <label for="subscribe">
-        <!-- Native HTML Checkbox -->
         <input
           type="checkbox"
           id="subscribe"
