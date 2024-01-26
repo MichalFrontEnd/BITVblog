@@ -15,6 +15,7 @@
         font-family: Arial, sans-serif;
         margin: 2rem;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
       }
@@ -167,6 +168,7 @@
     </style>
   </head>
   <body>
+    <h1>Contact Form</h1>
     <form action="#" method="post">
       <label for="firstName">First Name:</label>
       <input
@@ -204,6 +206,7 @@
             value="female"
             required
             aria-labelledby="femaleLabel genderLegend"
+            required
           />
           Female
         </label>
@@ -314,16 +317,16 @@
         >
       </fieldset>
 
-      <label for="message">Message:</label>
-      <!-- Add a separator with role="presentation" -->
       <div
         role="presentation"
-        style="border-top: 1px solid #ccc; margin-bottom: 1.6rem"
+        style="border-top: 3px solid #ccc; margin-bottom: 1.6rem"
       ></div>
+      <label for="message">Message:</label>
+
       <textarea
         id="message"
         name="message"
-        rows="4"
+        rows="10"
         required
         aria-labelledby="messageLabel"
       ></textarea>
