@@ -89,8 +89,14 @@
         background-color: var(--midnight);
       }
 
+      /* make only visible for screen readers */
       .sr-only {
         visibility: hidden;
+      }
+
+      /* Adds space before asterisk */
+      .required-asterisk::before {
+        content: " ";
       }
 
       .radiogroup legend::after {
@@ -170,7 +176,9 @@
   <body>
     <h1>Contact Form</h1>
     <form action="#" method="post">
-      <label for="firstName">First Name:</label>
+      <label for="firstName"
+        >First Name:<span class="required-asterisk">*</span></label
+      >
       <input
         type="text"
         id="firstName"
@@ -183,7 +191,9 @@
         >Please enter your first name:</label
       >
 
-      <label for="lastName">Last Name:</label>
+      <label for="lastName"
+        >Last Name:<span class="required-asterisk">*</span></label
+      >
       <input
         type="text"
         id="lastName"
@@ -195,6 +205,16 @@
       <label id="lastNameLabel" class="sr-only"
         >Please enter your last name:</label
       >
+      <label for="email">Email:<span class="required-asterisk">*</span></label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        aria-labelledby="emailLabel"
+      />
+
+      <label id="lastNameLabel" class="sr-only">Please enter your email:</label>
 
       <div role="radiogroup" aria-labelledby="genderLegend" class="radiogroup">
         <legend id="genderLegend">Gender:</legend>
@@ -204,9 +224,7 @@
             id="female"
             name="gender"
             value="female"
-            required
             aria-labelledby="femaleLabel genderLegend"
-            required
           />
           Female
         </label>
@@ -216,7 +234,6 @@
             id="male"
             name="gender"
             value="male"
-            required
             aria-labelledby="maleLabel genderLegend"
           />
           Male
@@ -227,7 +244,6 @@
             id="diverse"
             name="gender"
             value="diverse"
-            required
             aria-labelledby="diverseLabel genderLegend"
           />
           Diverse
@@ -238,7 +254,6 @@
             id="ratherNotSay"
             name="gender"
             value="ratherNotSay"
-            required
             aria-labelledby="ratherNotSayLabel genderLegend"
           />
           Rather not say
@@ -257,7 +272,6 @@
           type="text"
           id="street"
           name="street"
-          required
           aria-labelledby="streetLabel"
         />
 
@@ -266,34 +280,17 @@
         >
 
         <label for="city">City:</label>
-        <input
-          type="text"
-          id="city"
-          name="city"
-          required
-          aria-labelledby="cityLabel"
-        />
+        <input type="text" id="city" name="city" aria-labelledby="cityLabel" />
 
         <label id="cityLabel" class="sr-only">Please enter your city:</label>
 
         <label for="zip">ZIP Code:</label>
-        <input
-          type="text"
-          id="zip"
-          name="zip"
-          required
-          aria-labelledby="zipLabel"
-        />
+        <input type="text" id="zip" name="zip" aria-labelledby="zipLabel" />
 
         <label id="zipLabel" class="sr-only">Please enter your ZIP code:</label>
 
         <label for="country">State:</label>
-        <select
-          id="country"
-          name="country"
-          required
-          aria-labelledby="countryLabel"
-        >
+        <select id="country" name="country" aria-labelledby="countryLabel">
           <option value="bw">Baden-Württemberg</option>
           <option value="by">Bayern</option>
           <option value="be">Berlin</option>
@@ -321,7 +318,9 @@
         role="presentation"
         style="border-top: 3px solid #ccc; margin-bottom: 1.6rem"
       ></div>
-      <label for="message">Message:</label>
+      <label for="message"
+        >Message: <span class="required-asterisk">*</span></label
+      >
 
       <textarea
         id="message"
@@ -338,6 +337,9 @@
         tabindex="0"
         aria-labelledby="termsLabel"
         for="terms"
+        role="checkbox"
+        aria-checked="false"
+        required
       >
         <span class="custom-checkbox__input">
           <input
@@ -347,7 +349,7 @@
             value="yes"
             aria-labelledby="termsLabel"
           />
-          <span class="custom-checkbox__control">
+          <span class="custom-checkbox__control" role="presentation">
             <svg
               enable-background="new 0 0 24 24"
               height="24px"
@@ -369,7 +371,8 @@
           </span>
         </span>
         <span class="custom-checkbox__label"
-          >Agree to Terms and Conditions</span
+          >Agree to Terms and Conditions
+          <span class="required-asterisk">*</span></span
         >
       </label>
 
