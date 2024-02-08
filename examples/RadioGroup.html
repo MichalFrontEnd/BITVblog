@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" class=""><head><title>RadioGroup</title><meta name="title" content="RadioGroup"><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><style id="__livecodes_styles__">body {
+  font-family: Arial, sans-serif;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+}
+
+label,
+.radiogroup legend {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+input,
+select,
+textarea {
+  padding: 0.8rem;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 0.4rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 0.2rem dashed var(--primary);
+  outline-offset: 0.2rem;
+}
+
+fieldset {
+  margin-bottom: 1.6rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.4rem;
+}
+
+fieldset legend {
+  font-weight: bold;
+}
+
+/* make only visible for screen readers */
+.sr-only {
+  visibility: hidden;
+}
+
+/* Adds space before asterisk */
+.required-asterisk::before {
+  content: " ";
+}
+
+.radiogroup legend::after {
+  content: "\a";
+  white-space: pre;
+}
+
+.radiogroup label {
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+  display: inline-block;
+}</style></head><body>
+
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessible Form Example</title>
+
+  
+    
+    <h1>Contact Form</h1>
+    <form action="#" method="post">
+      <div role="radiogroup" aria-labelledby="genderLegend" class="radiogroup">
+        <legend id="genderLegend">Gender:</legend>
+        <label for="female">
+          <input type="radio" id="female" name="gender" value="female" aria-labelledby="femaleLabel genderLegend">
+          Female
+        </label>
+        <label for="male">
+          <input type="radio" id="male" name="gender" value="male" aria-labelledby="maleLabel genderLegend">
+          Male
+        </label>
+        <label for="diverse">
+          <input type="radio" id="diverse" name="gender" value="diverse" aria-labelledby="diverseLabel genderLegend">
+          Diverse
+        </label>
+        <label for="ratherNotSay">
+          <input type="radio" id="ratherNotSay" name="gender" value="ratherNotSay" aria-labelledby="ratherNotSayLabel genderLegend">
+          Rather not say
+        </label>
+
+        <label id="genderLabel" class="sr-only">Please select your gender:</label>
+      </div>
+    </form>
+  
+
+<script></script></body></html>

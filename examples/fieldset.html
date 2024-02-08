@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" class=""><head><title>fieldset</title><meta name="title" content="fieldset"><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><style id="__livecodes_styles__">:root {
+  --primary: #007bff;
+  --sky: #004997;
+  --midnight: #011e3b;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+}
+
+label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+input,
+select {
+  padding: 0.8rem;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 0.4rem;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+}
+
+input:focus,
+select:focus {
+  outline: 0.2rem dashed var(--primary);
+  outline-offset: 0.2rem;
+}
+
+fieldset {
+  margin-bottom: 1.6rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.4rem;
+}
+
+fieldset legend {
+  font-weight: bold;
+}
+
+/* make only visible for screen readers */
+.sr-only {
+  visibility: hidden;
+}
+
+/* Adds space before asterisk */
+.required-asterisk::before {
+  content: " ";
+}
+
+</style></head><body>
+
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessible Form Example</title>
+
+  
+    
+    <h1>Address The Issue</h1>
+    <form action="#" method="post">
+      <fieldset>
+        <legend>Address:</legend>
+
+        <label for="street">Street:</label>
+        <input type="text" id="street" name="street" aria-labelledby="streetLabel">
+
+        <label id="streetLabel" class="sr-only">Please enter your street address:</label>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" aria-labelledby="cityLabel">
+
+        <label id="cityLabel" class="sr-only">Please enter your city:</label>
+
+        <label for="zip">ZIP Code:</label>
+        <input type="text" id="zip" name="zip" aria-labelledby="zipLabel">
+
+        <label id="zipLabel" class="sr-only">Please enter your ZIP code:</label>
+
+        <label for="country">State:</label>
+        <select id="country" name="country" aria-labelledby="countryLabel">
+          <option value="bw">Baden-Württemberg</option>
+          <option value="by">Bayern</option>
+          <option value="be">Berlin</option>
+          <option value="bb">Brandenburg</option>
+          <option value="hb">Bremen</option>
+          <option value="hh">Hamburg</option>
+          <option value="he">Hessen</option>
+          <option value="mv">Mecklenburg-Vorpommern</option>
+          <option value="ni">Niedersachsen</option>
+          <option value="nw">Nordrhein-Westfalen</option>
+          <option value="rp">Rheinland-Pfalz</option>
+          <option value="sl">Saarland</option>
+          <option value="sn">Sachsen</option>
+          <option value="st">Sachsen-Anhalt</option>
+          <option value="sh">Schleswig-Holstein</option>
+          <option value="th">Thüringen</option>
+        </select>
+
+        <label id="countryLabel" class="sr-only">Please select your state:</label>
+      </fieldset>
+    </form>
+  
+
+<script></script></body></html>

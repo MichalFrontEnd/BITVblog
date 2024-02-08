@@ -1,0 +1,124 @@
+# Accessible Form
+
+## The Exhaustive(/ing?) Guide
+
+
+The web is available to (pretty much) everyone, and as such it should be comfortable to all its users to use regardless of their abilities or disabilities. Paying attention to the accessibility of the sites we build make them inclusive to as many users as possible. By being mindful of the different needs and abilities of the users we ensure better user experience, we can adapt to a wider age-range of our users or the different tools they use to operate a web browser. Search engines often favor websites that provide a better user experience, including those designed with accessibility in mind.
+
+Also, if you don't, [you might get sued...](https://www.forbes.com/sites/gusalexiou/2023/06/30/website-accessibility-lawsuits-rising-exponentially-in-2023-according-to-latest-data/ )
+
+
+One of the most common and important ways users interact with the web is via web forms. From logging into websites to making a reservation at a restaurant - most of the interactive actions users perform on websites are done via forms. However, web forms can pose many challenges or barriers for users experiencing difficulty seeing or navigating using a mouse. Inaccessible forms can lead to feelings of frustration, alienation or users abandoning the site or service altogether.
+
+Having accessible forms ensures that differently abled users can access the information or service just like other users, and they provide many examples (or pitfalls) for accessible coding.
+
+Only here for a refresher? Jump to the bottom for the full code example (anchor)
+
+## Let's start with the basics 
+!["GIF basic"](https://media1.giphy.com/media/xT9IgCp84cRrbpW5hK/giphy.gif?cid=ecf05e479c33oxylj7u93s18dbqgrnw5xf0pt0gg2pitiaw3&ep=v1_gifs_search&rid=giphy.gif&ct=g)
+
+## Semantic HTML
+HTML comes with accessible elements out of the box. The easiest first step is using the native semantically appropriate tag (instead of repurposing a non-semantic element like a `<span>` or a `<div>`).
+
+```
+<button type="submit">Submit</button>
+
+//and not: <div type="button">Submit</div>
+```
+
+### Labels, labels, labels
+!["GIF fashion labels"](https://media4.giphy.com/media/521OjNrSVt7qWlrym7/200.gif?cid=790b7611ugk4v3pn69mwfff8zk93kl3ih9aku6c5wqoon7so&ep=v1_gifs_search&rid=)
+
+One important, and often missing, native HTML element in forms is the `<label>`. The labels describe to the user what to do with their associated various form-controls, be it visually or when read out loud by a screen reader.
+
+When a label is connected to a form-control, using a `for`attribute that's equal to the form-control's `id`, it will also focus on the form-control when clicked. But now I'm getting ahead of myself...
+
+Properly marking required fields is crucial for accessibility and usability. By adding an asterisk (*) or other visual indicator to the labels of required form fields, users can easily identify which fields are mandatory. This improves the user experience and helps ensure that all necessary information is provided. It's generally better to place the asterisk in a seperate `<span>` element rather than as part of the label text both for styling purposes, and to make it easier for users using screen readers to understand the meaning of the symbol in the context of the form field's requirement.
+
+```
+<label for="firstName">First Name:<span>*</span> </label>
+<input
+  type="text"
+  id="firstName"
+  name="firstName"
+  required
+/>
+
+
+<label for="subscribe">
+ <input
+    type="checkbox"
+    id="subscribe"
+    name="subscribe"
+ />
+ Subscribe to newsletter
+</label>
+```
+
+### Legends
+a `<legend>` is a type of label that can be used to give context to a group of connected inputs, for example when entering an address. The `<fieldset>` will (natively) wrap the input group with a border, and the `<legend>` will sit on top of it, making a visible connection between all inputs.
+
+___Code example: fieldset___
+
+! Placeholders are another way of providing the user with information on how to fill an input field, but they should not replace a label. You can use the placeholder attribute to provide additional guidance, such as examples or expected formats, rather than repeating the label text.
+
+
+## Enhancing Accessibility with ARIA
+
+### aria-label vs. aria-labelledby
+
+`aria-label`and `aria-labelledby` are both attributes used in Accessible Rich Internet Applications (ARIA) to provide additional information for screen readers, but they serve different purposes.
+
+Use `aria-label` directly on an element, if that element has no visible label. The value of the `aria-label` will be read out by the screen reader, and it's best to keep it concise.
+
+The `aria-label` value is not conveyed to visual users, so it can't replace a `<label>`.
+
+```
+<input type="text" aria-label="Search">
+```
+
+Use `aria-labelledby` when you want to associate an element with one or more existing elements that act as its label.
+
+It's common to use it on a hidden label that will only be read out by screen readers and will provide additional information to visually-impaired users. It is commonly done by adding a `sr-only` utility class. The `sr-only` label should be styled with CSS to either sit off screen, be so tiny it's practically invisible or be visually hidden, but it should still be part of the markup flow.
+
+```
+<style>
+ .sr-only {
+   visibility: hidden;
+ }
+ 
+//or
+ 
+ .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+ }
+</style>
+       
+ 
+<label for="firstName">First Name:</label>
+<input
+  type="text"
+  id="firstName"
+  name="firstName"
+  required
+  aria-labelledby="firstNameLabel"
+/>
+ 
+<label id="firstNameLabel" class="sr-only">
+Please enter your first name:</label>
+```
+Using both visible and hidden labels ensures that a form is accessible to a broader audience, and it accommodates users with varying needs. Just make sure both labels are consistent and keep the visible label concise to avoid redundancy with the hidden label!
+
+### ARIA Role
+There are cases where the role of an element might not be clear from it's native HTML tag and it needs to be enhanced, or where the role changes dynamically based on user interactions. A common usecase could be when creating a custom control.
+
+To define that you can use the `aria-role` attribute.
+
+Unlike with native HTML elements, ARIA roles will not provide the element with the default browser styling or keyboard behavior. **Do not use an ARIA role or property if it is possible to use an HTML element that has equivalent semantics.** Exceptions to that would be if the element can't be styled according to a design or if it's a custom element.

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" class=""><head><title>Presentation role</title><meta name="title" content="Presentation role"><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><style id="__livecodes_styles__">:root {
+  --primary: #007bff;
+  --sky: #004997;
+  --midnight: #011e3b;
+}
+.row {
+  display: inline-flex;
+  margin-block-end: 2rem;
+  padding-block-start: 0.5rem;
+}
+
+input + label {
+  margin-inline-start: 4rem;
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 2rem;
+}
+
+
+label {
+  margin: 0.25rem;
+}
+
+
+input {
+  padding: 0.3rem;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 0.4rem;
+}
+
+
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 0.2rem dashed var(--primary);
+  outline-offset: 0.2rem;
+}
+
+fieldset {
+  margin-bottom: 1.6rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.4rem;
+}
+
+fieldset legend {
+  font-weight: bold;
+}
+
+/* make only visible for screen readers */
+.sr-only {
+  visibility: hidden;
+}
+
+
+
+
+</style></head><body><fieldset>
+  <legend>It's all in the presentation</legend>
+  <div class="row" role="presentation">
+    <label for="street">Street:</label> 
+    <input type="text" id="street" name="street" required="">
+    <label for="number">House Number:</label>
+    <input type="text" id="number" name="number" required="">
+  </div>
+  <div class="row" role="presentation">
+    <label for="postal-code">Postal Code:</label> 
+    <input type="text" id="postal-code" name="postal-code" required="">
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" required="">
+  </div>
+</fieldset>
+<script></script></body></html>
