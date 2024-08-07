@@ -140,3 +140,62 @@ decorative. These elements will be ignored by screen readers who will go directl
 
 There are certainly cases where an aria-role will enhance an element, but some ARIAs can override the native HTML context, so __Role wisely__.
 [Read more about this here](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/)
+
+## Keyboard Navigation and focus
+
+### Keyboard Navigation
+
+Interactive HTML elements are normally usable and navigable using a keyboard. Make sure that is the case and add the tabindex="0" property
+when needed (for example, custom controls). The tabbing order of the elements should be logical and is normally determined by the underlying HTML
+structure, so you normally won't give it a higher value than "0", if the elements are placed logically.
+
+### Custom Controls
+
+Sometimes you might need to create your own custom form-controls in order to match the design. These controls will not have the built-in
+accessible properties of the native HTML elements, and they will have to be applied manually.
+This is an example of a custom checkbox. It had to be entered manually into the tab order and have all the required ARIA attributes mentioned
+above.
+Since it is not a native checkbox the browser can't manage its checked state, so an aria-checked attribute is needed to manually handle the
+checked state.
+
+<Code example>
+
+### Visible focus styles and contrast
+
+A focused element, or an element tabbed into, should have a visible indicator for that. That is usually acheived by adding an outline of sorts.
+An element that is hovered or active (pressed button, current tab) should have some visible change to them, like a different background colour, fontweight or font-colour.
+These changes should be dramatic enough to be noticable and still ensure a sufficient color contrast between background and content.
+
+```
+button:hover {
+ background-color: var(--sky);
+}
+button:active {
+ background-color: var(--midnight);
+}
+```
+[Read more about contrast here.](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html)
+
+## Gendering and Diversity
+
+While this is not an accessibility issue, your form will definitely benefit from also being gender-inclusive, and it will create a more welcoming and respectful
+environment for all users.
+Providing a range of gender options beyond the traditional binary male/female recognizes and respects the identities of non-binary, genderqueer
+and other individuals who may not identify with the strict binary options.
+You may also add an option to not share this information, for users who might not want to or who find it irrelevant to the subject.
+
+<Code example>
+
+## The tl;dr:
+
+Prioritizing accessibility in web forms is essential for creating an inclusive online environment that accommodates users of all abilities. By
+implementing accessible coding practices, websites can provide a seamless user experience, minimize barriers, and ensure equal access to
+information and services for everyone.
+
+Not convinced yet?
+
+Here's a full-blown example of all the above concepts in one exhaustive form.
+
+*breath*
+
+<Full code>
