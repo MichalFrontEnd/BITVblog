@@ -2,11 +2,12 @@
 
 ## The Exhaustive(/ing?) Guide
 
+The web is available to (pretty much) everyone, and as such it should be comfortable to all its users to use regardless of their abilities or disabilities.
+Paying attention to the accessibility of the sites we build make them inclusive to as many users as possible. By being mindful of the different needs
+and abilities of the users we ensure better user experience, we can adapt to a wider age-range of our users or the different tools they use to operate
+a web browser. Search engines often favor websites that provide a better user experience, including those designed with accessibility in mind.
 
-The web is available to (pretty much) everyone, and as such it should be comfortable to all its users to use regardless of their abilities or disabilities. Paying attention to the accessibility of the sites we build make them inclusive to as many users as possible. By being mindful of the different needs and abilities of the users we ensure better user experience, we can adapt to a wider age-range of our users or the different tools they use to operate a web browser. Search engines often favor websites that provide a better user experience, including those designed with accessibility in mind.
-
-Also, if you don't, [you might get sued...](https://www.forbes.com/sites/gusalexiou/2023/06/30/website-accessibility-lawsuits-rising-exponentially-in-2023-according-to-latest-data/ )
-
+Also, if you don't [you might get sued...](https://www.forbes.com/sites/gusalexiou/2023/06/30/website-accessibility-lawsuits-rising-exponentially-in-2023-according-to-latest-data/ )
 
 One of the most common and important ways users interact with the web is via web forms. From logging into websites to making a reservation at a restaurant - most of the interactive actions users perform on websites are done via forms. However, web forms can pose many challenges or barriers for users experiencing difficulty seeing or navigating using a mouse. Inaccessible forms can lead to feelings of frustration, alienation or users abandoning the site or service altogether.
 
@@ -17,7 +18,7 @@ Only here for a refresher? Jump to the bottom for the full code example (anchor)
 ## Let's start with the basics 
 !["GIF basic"](https://media1.giphy.com/media/xT9IgCp84cRrbpW5hK/giphy.gif?cid=ecf05e479c33oxylj7u93s18dbqgrnw5xf0pt0gg2pitiaw3&ep=v1_gifs_search&rid=giphy.gif&ct=g)
 
-## Semantic HTML
+### Semantic HTML
 HTML comes with accessible elements out of the box. The easiest first step is using the native semantically appropriate tag (instead of repurposing a non-semantic element like a `<span>` or a `<div>`).
 
 ```
@@ -60,7 +61,7 @@ a `<legend>` is a type of label that can be used to give context to a group of c
 
 ___Code example: fieldset___
 
-! Placeholders are another way of providing the user with information on how to fill an input field, but they should not replace a label. You can use the placeholder attribute to provide additional guidance, such as examples or expected formats, rather than repeating the label text.
+*!* Placeholders are another way of providing the user with information on how to fill an input field, but they should not replace a label. You can use the placeholder attribute to provide additional guidance, such as examples or expected formats, rather than repeating the label text.
 
 
 ## Enhancing Accessibility with ARIA
@@ -69,7 +70,7 @@ ___Code example: fieldset___
 
 `aria-label`and `aria-labelledby` are both attributes used in Accessible Rich Internet Applications (ARIA) to provide additional information for screen readers, but they serve different purposes.
 
-Use `aria-label` directly on an element, if that element has no visible label. The value of the `aria-label` will be read out by the screen reader, and it's best to keep it concise.
+Use `aria-label` directly on an element, __if that element has no visible label__. The value of the `aria-label` will be read out by the screen reader, and it's best to keep it concise.
 
 The `aria-label` value is not conveyed to visual users, so it can't replace a `<label>`.
 
@@ -125,3 +126,17 @@ Unlike with native HTML elements, ARIA roles will not provide the element with t
 ```
 <span role="alert">This is an important message!</span>
 ```
+
+### Presentation Role
+One ARIA role that can come in handy is the role="presentation" that is used to hide elements whose use is only functional, organizational or
+decorative. These elements will be ignored by screen readers who will go directly to read out the child elements.
+
+<Presentation role example>
+
+### No ARIA is better than bad ARIA 
+
+<Arya GIF>
+<iframe src="https://giphy.com/embed/V4OYtjpGKr16" width="360" height="250" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/game-of-thrones-arya-stark-silly-gif-V4OYtjpGKr16">via GIPHY</a></p>
+
+There are certainly cases where an aria-role will enhance an element, but some ARIAs can override the native HTML context, so __Role wisely__.
+[Read more about this here](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/)
